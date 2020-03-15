@@ -11,7 +11,6 @@ syntax off
 set incsearch
 
 
-imap kj <esc>
 
 nmap ; :
 nnoremap ;; ;
@@ -19,13 +18,9 @@ nnoremap ;; ;
 let mapleader=" "
 noremap <SPACE> <Nop>
 
-map <leader>q :q<enter>
-nmap AZZ :wqa<enter>
-
 map <leader>c :! ctags -R <enter><enter>
 map <leader>] <C-w>v<C-]>
 
-map <leader>ds :!rm *.swp <enter><enter>
 
 
 highlight Colorcolumn ctermbg=red
@@ -34,6 +29,9 @@ call matchadd('ColorColumn', '\%>76v.\+', 90)
 autocmd BufWinEnter *  match ExtraWhitespace /\s\+$/
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 
-set tabstop=4
-set shiftwidth=4
-set expandtab
+"hashrocket presistent folds
+augroup AutoSaveFolds
+    autocmd!
+    autocmd BufWinLeave * mkview
+    autocmd bufWinEnter * silent loadview
+augroup End
